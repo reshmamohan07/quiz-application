@@ -12,16 +12,16 @@ export class QuestionComponent implements OnInit {
   public questionList: any = [];
   public currentQuestion: number = 0;
   public points: number = 0;
-  isQuizCompleted: boolean = false;
-  counter = 60;
-  interval: any;
+  public isQuizCompleted: boolean = false;
+  public counter = 60;
+  public interval: any;
   public totalCorrect: number = 0;
   public totalWrong: number = 0;
-  q: any;
+  public q: any;
 
   constructor(private questionservice: QuestionService) { }
   ngOnInit(): void {
-    this.name = localStorage.getItem("name")!;
+    this.name = localStorage.getItem("USER_NAME")!;
     this.getAllQuestions();
     this.setTimer();
   }
