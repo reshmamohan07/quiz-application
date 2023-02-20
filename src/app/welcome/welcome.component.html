@@ -1,0 +1,21 @@
+
+<app-header></app-header>
+<div class="container bg-light py-5 mt-3">
+    <h1 class="display-5 fw-bold">Welcome to Angular Quiz</h1>
+  <p class="col-md-8 fs-4">This quiz will contain total 9 questions.Each question holds 10 points</p>
+ <h4>Rules For the Quiz:</h4>
+ <ul>
+    <li>Correct Question gives you 10 points</li>
+    <li>Incorrect Question gives you -10 points</li>
+    <li>You will have 60 sec for each question</li>
+    <li>Refreshing the page will reset the quiz!</li>
+ </ul>
+ <h1 style= "font-family: cursive; text-align: center; ">All the best!! </h1>
+<div class="name col-md-4 my-3">
+    <label for="">Enter Your Name:</label>
+    <input #name type="text" class="form-control">
+</div>
+
+    <button class="btn btn-primary btn-lg" routerLink="/question" (click)="startQuiz()">Start The Quiz</button>
+
+</div>

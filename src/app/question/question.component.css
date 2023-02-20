@@ -1,0 +1,77 @@
+.card {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+li {
+    list-style-type: none;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+li .card:hover {
+    border: 1px solid blue;
+}
+
+ol {
+    padding: 0;
+}
+
+.correct {
+    background-color: #90ee90;
+}
+
+.wrong {
+    background-color: #ff074d;
+}
+
+.question .card {
+    min-height: 96px;
+    display: flex;
+    justify-content: center;
+}
+
+.qNum {
+    background: linear-gradient(#f5c5c5, #ccd0fd);
+    width: 36px;
+    display: inline-block;
+    text-align: center;
+    justify-content: center;
+    border-radius: 5px;
+    box-shadow: 0px 0px 4px 3px #d5e0fd;
+}
+
+.qNum-box {
+    display: flex;
+
+    flex-wrap: wrap;
+    background-color: #cee2f5;
+    padding: 10px;
+}
+
+
+.qNum-container {
+    position: absolute;
+    top: 30%;
+    right: 20px;
+    max-width: 95px;
+}
+
+.disabled {
+    background-color: gray;
+    opacity: .5;
+}
+@media only screen and (max-width: 950px) {
+    .qNum-container {
+        top: 110%;
+        right : calc(50% - 103px);
+        max-width: 206px;
+    }
+}
+/* @media only screen and (max-width: 600px) {
+    .qNum-container {
+        top: 110%;
+    }
+} */
+

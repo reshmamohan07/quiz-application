@@ -1,0 +1,82 @@
+<div class="container mt-5">
+    <div class="card">
+        <div class="d-flex justify-content-between p-3">
+            <div class="image">
+                <img src="https://img.icons8.com/color/256/angularjs.png" width="80">
+            </div>
+            <div class="quiz-header">
+                <h4 style="font-family: cursive;">Angular & Typescript Quiz</h4>
+                <span style="font-style: italic;">Welcome {{name}}</span>
+            </div>
+        </div>
+        <ng-container *ngIf="!isQuizCompleted">
+            <div class="d-flex justify-content-around py-3">
+                <div class="score">
+                    <h5> {{points}}Points</h5>
+                </div>
+                <div class="question-remaing">
+                    <span style="font-style: italic;">Question {{currentQuestion + 1}} of {{questionList?.length}}</span>
+                </div>
+                <div class="timer">
+                    <h5>{{counter +'sec'}}</h5>
+                </div>
+            </div>
+            <div class="progress mb-3">
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                 style="width: {{100 * (currentQuestion + 1) / questionList.length}}%"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <div class="question">
+                <div class="card">
+                    <h3>{{questionList[currentQuestion]?.questionText}}</h3>
+                </div>
+            </div>
+            <div class="options">
+                <ol>
+                    <li *ngFor="let option of questionList[currentQuestion]?.options">
+                        <div class="card" (click)="!questionList[currentQuestion].disabled && selectOption(option, currentQuestion)"
+                            [class.disabled]="!option.selected  && questionList[currentQuestion].disabled"
+                            [class.correct]="option.correct && option.selected"
+                            [class.wrong]="!option.correct && option.selected">
+    
+                            {{option?.text}}
+                        </div>
+                    </li>
+                </ol>
+            </div>
+    
+            <div class="d-flex justify-content-between">
+                <button class="btn" [disabled]="currentQuestion===0"><i class="fa text-primary fa-chevron-left fa-3x"
+                        area-hidden="true" (click)="previousQuestion()"></i></button>
+                <button class="btn"><i class="fa text-primary fa-refresh fa-3x" area-hidden="true" (click)="refreshQuestion()"></i></button>
+                <button class="btn" *ngIf="currentQuestion+1 < questionList.length" ><i
+                        class="fa text-primary fa-chevron-right fa-3x" area-hidden="true"
+                        (click)="nextQuestion()"></i></button>
+                        <button class="btn btn-success" (click)="result()" *ngIf="currentQuestion+1 >=questionList.length">Submit</button>
+            </div>
+           
+        </ng-container>
+      <ng-container *ngIf="isQuizCompleted">
+        <div class="row d-flex justify-content-between">
+            <img style width="50%" class="img-fluid col-sm-6 mx-auto" 
+            [src]="hasPassed ? 'https://icon2.cleanpng.com/20180406/jjw/kisspng-party-popper-computer-icons-emoji-clip-art-party-5ac71e57b63484.8793395915229988717463.jpg':
+            'https://www.pngfind.com/pngs/m/238-2383371_sad-emoticon-png-new-iphone-emojis-transparent-png.png'">
+        <div class="result text-center col-md-6 col-sm-12">
+            <h3>{{hasPassed ? 'Congratulations!!':'Sorry, You Failed!!!'}}<br>You have completed the quiz.<br>Below is the result</h3>
+            <p>Total Question attempted: {{questionList.length}}</p>
+            <p>Total Correct answered: {{totalCorrect}}</p>
+            <p>Total wrong answered: {{totalWrong}}</p>
+            <p>Your score: {{points}}Points</p>
+        </div>
+        </div>
+      </ng-container>
+
+      
+    </div>
+</div>
+
+<div class="qNum-container">
+    <div class="qNum-box">
+        <span class="qNum" *ngFor="let qL of questionList;let i = index" (click)="currentQuestion=i">{{i+1}}</span>
+    </div>
+</div>
